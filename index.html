@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#08152e">
+  <title>Templebreed International | Sunday Attendance</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Background photos (replace images/bg1.jpg, bg2.jpg, bg3.jpg with your own) -->
+  <div class="bg" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="shade" aria-hidden="true"></div>
+
+  <!-- Welcome / preload page -->
+  <div class="splash" id="splash" role="dialog" aria-label="Welcome">
+    <div class="splash-inner">
+      <div class="logo-tile">
+        <img class="logo" src="logo.png" alt="Templebreed International logo" width="672" height="373">
+      </div>
+      <h2 class="splash-title">Welcome to Templebreed International</h2>
+      <p class="splash-sub">Please take your attendance.</p>
+      <p class="splash-credit">Powered by <strong>Mord Tech</strong></p>
+    </div>
+  </div>
+
+  <main>
+    <header class="brand">
+      <!-- LOGO: images/logo.png (replace the file to change it) -->
+      <div class="logo-tile" id="logoTile">
+        <img id="logo" class="logo" src="logo.png" alt="Templebreed International logo" width="672" height="373">
+      </div>
+    </header>
+    <p class="church sr-only" id="church"></p>
+    <p class="tagline" id="tagline"></p>
+
+    <div class="glass">
+
+      <!-- ===== ATTENDANCE PAGE (what church members see) ===== -->
+      <section id="attend" class="hidden">
+
+        <div id="loadingView" class="state">
+          <div class="spinner" aria-hidden="true"></div>
+          <p>Checking attendance…</p>
+        </div>
+
+        <div id="errorView" class="state hidden" role="alert">
+          <h1>Can't connect</h1>
+          <p class="note">Please check your network and try again.</p>
+          <button class="primary" id="retry" type="button">Try again</button>
+        </div>
+
+        <div id="formView" class="hidden">
+          <h1>Sunday service attendance</h1>
+          <p class="date" id="date">&nbsp;</p>
+
+          <form id="form" novalidate autocomplete="on">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Mordecai James" maxlength="80" required>
+
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0907767XXXX" maxlength="20" required>
+
+            <label for="email">Email address <small id="optional">(optional)</small></label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="mordecai@example.com" maxlength="120">
+
+            <p class="error" id="error" role="alert"></p>
+            <button class="primary" id="go" type="submit">Mark me present</button>
+          </form>
+        </div>
+
+        <div id="closedView" class="hidden" role="status">
+          <h1>Attendance is closed</h1>
+          <p class="date">Open on Sundays only</p>
+          <p class="note" id="closedMsg"></p>
+        </div>
+
+        <div id="thanksView" class="thanks hidden" role="status">
+          <svg class="tick" viewBox="0 0 84 84" aria-hidden="true">
+            <circle cx="42" cy="42" r="42"></circle>
+            <path d="M24 43 l12 12 l25 -27"></path>
+          </svg>
+          <h2 id="thanksTitle"></h2>
+          <p class="saved" id="thanksSaved"></p>
+          <p class="msg" id="thanksMsg"></p>
+          <div class="receipt">
+            <div><span>Name</span><span id="rName"></span></div>
+            <div><span>Phone</span><span id="rPhone"></span></div>
+            <div id="rEmailRow"><span>Email</span><span id="rEmail"></span></div>
+            <div><span>Service</span><span id="rDate"></span></div>
+          </div>
+          <p class="next" id="thanksNext"></p>
+          <button class="secondary" id="home" type="button">Back to home</button>
+        </div>
+      </section>
+
+      <!-- ===== BIG-SCREEN PAGE (open  index.html?view=display ) ===== -->
+      <section id="display" class="hidden">
+        <h1>Mark your attendance</h1>
+        <p class="date" id="dDate">&nbsp;</p>
+        <div class="qr-tile"><div id="qr"></div></div>
+        <p class="scan">Scan the code with your phone camera</p>
+        <p class="url" id="dUrl"></p>
+        <span class="count" id="count">0 present</span>
+        <p class="status" id="dStatus"></p>
+      </section>
+
+    </div>
+
+    <footer class="credit">Created by <strong>Mord Tech</strong></footer>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
